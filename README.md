@@ -1,6 +1,6 @@
 # Entity_extraction
 
-Standard pretrained based Entity extraction using SpaCy.
+Standard pretrained based Entity extraction and custom Entity extraction using SpaCy.
 Entities can be extracted from text using SpaCy are:
 ```
                         Type	        Description

@@ -23,3 +23,63 @@ Entities can be extracted from text using SpaCy are:
                         ORDINAL	        "first", "second", etc.
                         CARDINAL	    Numerals that do not fall under another type.
 ```
+
+Requirment:
+spaCy
+pathlib
+
+Reference:  https://spacy.io/usage/training/#section-ner
+usage
+```
+sample training data
+
+[
+    ("Horses are too tall and they pretend to care about your feelings", {
+        'entities': [(0, 6, 'ANIMAL')]
+    }),
+
+    ("Do they bite?", {
+        'entities': []
+    }),
+
+    ("horses are too tall and they pretend to care about your feelings", {
+        'entities': [(0, 6, 'ANIMAL')]
+    }),
+
+    ("horses pretend to care about your feelings", {
+        'entities': [(0, 6, 'ANIMAL')]
+    }),
+
+    ("they pretend to care about your feelings, those horses", {
+        'entities': [(48, 54, 'ANIMAL')]
+    }),
+
+    ("horses?", {
+        'entities': [(0, 6, 'ANIMAL')]
+    })
+]
+
+use atleast 100 samples of data for each lable to get accuracy from the model.
+```
+
+``` python
+
+from extract import entity
+entity = entity()
+
+To get standard entities results
+text = "sample text"
+ent = entity.default(text)
+print(ent)
+
+training model
+t_data = "training sample data"
+label = "sample label"
+ent = entity.trainModel(label= label, data = t_data)
+
+testing model
+text = "sample text"
+ent =  entity.load_model(test_text = text)
+print(ent)
+
+```
